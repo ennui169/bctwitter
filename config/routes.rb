@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
-  root 'tweets#new'
+  devise_for :users
+  root 'static_pages#index'
 
   resources :tweets
 
