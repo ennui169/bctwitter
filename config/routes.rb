@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :tweets
   resources :profiles #resources creates basic rules for things
   devise_for :users
+  resources :relationships, only: [:create]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

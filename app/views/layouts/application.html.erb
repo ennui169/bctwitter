@@ -42,16 +42,17 @@
 
       	<li>
       		<% if user_signed_in? %>
-        			<li>
-        				<%= link_to "Log Out",
-        					destroy_user_session_path,
-        					method: :delete %>
-        			</li>
             <% if current_user.profile %>
               <li>
-                <%= link_to "Profile", profile_path(current_user.profile.profile_name) %>
+                <%= link_to "Profile", 
+                  profile_path(current_user.profile.profile_name) %>
               </li>
             <% end %>
+              <li>
+                <%= link_to "Log Out",
+                  destroy_user_session_path,
+                  method: :delete %>
+              </li>
       		<% else %>	
       			<li>
       				<%= link_to "Sign up", 

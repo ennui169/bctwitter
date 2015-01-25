@@ -1,6 +1,7 @@
 class TweetsController < ApplicationController
 
 	before_action :authenticate_user!
+
 	def new 
 		@tweet = Tweet.new
 		@tweets = current_user.tweets
@@ -20,6 +21,7 @@ class TweetsController < ApplicationController
 	
 	def index 
 		@tweets = Tweet.all.reject{ |tweet| tweet.user == current_user }
+		@relationship = Relationship.new
 	end
 
 	private 
