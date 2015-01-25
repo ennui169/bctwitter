@@ -3,3 +3,9 @@
 	<%= f.input :content %>
 	<%= f.button :submit %>
 <% end %>
+
+<ul >
+	<% @tweets.each do |tweet| #whatever is in || refers to each object in tweets%>
+		<li><%= tweet.content %></li>
+	<% end %>
+</ul>
