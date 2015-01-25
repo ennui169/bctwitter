@@ -1,6 +1,34 @@
 class Tweet < ActiveRecord::Base
+	 include Twitter::Extractor
+
 	belongs_to :user
-	
- 	 validates :content, length: { maximum: 140 }
+ 	validates :content, length: { maximum: 140 }
  
+ 	def extract_hash_tags
+ 		extract_hashtags(self.content) #self refers to instance calling on--in this case, @tweet
+ 	end
+
+ 	validate :hashtags_created
+
+ 	def hashtags_created
+ 		begin
+	 		transaction do #anything that happens inside is one database transaction--only does rollback when run time error occurs
+		 		@hashtags = self.extract_hash_tags
+
+		 		@hashtags.each do |the_hashtag|
+		 			if Hashtag.where(tag: the_hashtag).any?
+		 				#do nothing
+		 			else
+		 				if Hashtag.create!(tag: the_hashtag)
+		 					#do nothing
+		 				else
+		 					self.errors.add(:tweet, "The hashtag is invalid")
+		 				end
+		 			end
+		 		end
+		 	end
+		 rescue
+		 	self.errors.add(:tweet, "The hastag(s) are invalid")
+		 end
+ 	end
 end

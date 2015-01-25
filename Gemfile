@@ -41,6 +41,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin]
 gem 'simple_form'
 gem 'devise'
 gem 'carrierwave'
+gem 'twitter-text', '~> 1.10.0'
 
 group :development, :test do
     # Call 'byebug' anywhere in the code to stop execution and get a debugger console

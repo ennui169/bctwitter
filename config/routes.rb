@@ -8,8 +8,10 @@ Rails.application.routes.draw do
   devise_for :users
   resources :relationships, only: [:create]
 
+  get 'tags/:hash_tag_id', to: 'hashtags#show', as: :hash_tag
+
   # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
+  # See how all your routes lay out with "rake routes".u
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
